@@ -1,13 +1,17 @@
 $letterlist = @('B','C','E','I','L','O')
 $anagramKey = "T"
 $wordList = Get-Content C:\data\NYTBEE.txt
-$foundWordsList = @("BITTE", "BITE")
+$foundWordsList = @()
 $score = 0
-
+$x = 0
 
 $allLetters = $letterlist += $anagramKey
 
 $allLetters =  $allLetters | Sort-Object {Get-Random}
+
+
+while($x -lt 15){
+
 
 write-host $allLetters
 
@@ -21,6 +25,7 @@ if($attempt.Contains($anagramKey) ){
         if($foundWordsList -notcontains $attempt){
         if($wordlist -contains $attempt){
                     write-host "valid word"
+                    $foundWordsList += $attempt
                     $score += $attempt.Length}
                     
 elseif($wordlist -notcontains $attempt)
@@ -35,11 +40,11 @@ elseif($attempt.length -lt 4){
  elseif($attempt -notcontains ($anagramKey)){
          write-host "Word must contain key"}
 
-
+clear
 write-host "Words found: "$foundWordsList
 write-host "Score: "$score
 
+$x++
 
 
-
-
+}
